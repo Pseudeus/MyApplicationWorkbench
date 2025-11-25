@@ -31,5 +31,9 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
             val detail = navBackStackEntry.toRoute<Detail>()
             DetailScreen(detail.id)
         }
+
+        composable<Settings> {
+
+        }
     }
 }
