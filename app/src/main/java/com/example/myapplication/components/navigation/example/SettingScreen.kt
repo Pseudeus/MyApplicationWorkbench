@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 import com.example.myapplication.components.navigation.example.model.SettingModel
 
 @Composable
-fun SettingScreen(settingModel: SettingModel) {
+fun SettingScreen(settingModel: SettingModel, navigateToHome: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
@@ -24,7 +24,7 @@ fun SettingScreen(settingModel: SettingModel) {
         Spacer(Modifier.weight(1f))
         Text("Setting: id: ${settingModel.id}, darkMode: ${settingModel.darkMode}", fontSize = 30.sp)
         Spacer(Modifier.weight(1f))
-        Button(onClick = {  }) {
+        Button(onClick = { navigateToHome() }) {
             Text("Navegar")
         }
         Spacer(Modifier.weight(1f))

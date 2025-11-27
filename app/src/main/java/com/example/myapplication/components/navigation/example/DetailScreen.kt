@@ -11,9 +11,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import com.example.myapplication.components.navigation.example.model.SettingModel
 
 @Composable
-fun DetailScreen(id: String) {
+fun DetailScreen(id: String, navigateToSettings: (SettingModel) -> Unit) {
+    val settingModel = SettingModel(id = "YOMERO", darkMode = true)
+
     Column(
         Modifier
             .fillMaxSize()
@@ -23,8 +26,8 @@ fun DetailScreen(id: String) {
         Spacer(Modifier.weight(1f))
         Text("DETAIL: $id", fontSize = 30.sp)
         Spacer(Modifier.weight(1f))
-        Button(onClick = {  }) {
-            Text("Navegar")
+        Button(onClick = { navigateToSettings(settingModel) }) {
+            Text("Ajustes")
         }
         Spacer(Modifier.weight(1f))
     }

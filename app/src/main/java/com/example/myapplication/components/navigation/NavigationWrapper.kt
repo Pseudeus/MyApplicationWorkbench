@@ -9,6 +9,11 @@ import androidx.navigation.toRoute
 import com.example.myapplication.components.navigation.example.DetailScreen
 import com.example.myapplication.components.navigation.example.HomeScreen
 import com.example.myapplication.components.navigation.example.LoginScreen
+import com.example.myapplication.components.navigation.example.SettingScreen
+import com.example.myapplication.components.navigation.example.model.SettingModel
+import com.example.myapplication.components.navigation.types.createNavType
+import com.example.myapplication.components.navigation.types.settingsModelType
+import kotlin.reflect.typeOf
 
 @Composable
 fun NavigationWrapper(modifier: Modifier = Modifier) {
@@ -29,11 +34,18 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
 
         composable<Detail> { navBackStackEntry ->
             val detail = navBackStackEntry.toRoute<Detail>()
-            DetailScreen(detail.id)
+            DetailScreen(detail.id, navigateToSettings = { navController.navigate(Settings(it)) })
         }
 
-        composable<Settings> {
-
+        composable<Settings>(typeMap = mapOf(typeOf<SettingModel>() to createNavType<SettingModel>())) { navBackStackEntry ->
+            val setting = navBackStackEntry.toRoute<Settings>()
+            SettingScreen(settingModel = setting.settingModel, navigateToHome = {
+                navController.navigate(Login) {
+                    popUpTo<Login> {
+                        inclusive = true
+                    }
+                }
+            })
         }
     }
 }

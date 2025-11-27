@@ -58,6 +58,7 @@ dependencies {
 
 
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlin.serialization.json)
     implementation(libs.kotlin.serialization)
 
     testImplementation(libs.junit)
